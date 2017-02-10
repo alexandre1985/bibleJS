@@ -30,8 +30,7 @@ function getVerses(book, chapter) {
 /* program starts here */
 let xray = require('x-ray');
 let x = xray();
-let XMLHttpRequest2 = require("xmlhttprequest").XMLHttpRequest;
-let co = require('co');
+
 
 function print(txt) { console.log(txt); }
 function error(txt) { console.error('Error: ' + txt); }
@@ -69,8 +68,11 @@ function* allVerseNumbers2File() {
 	string = string.replace(/\],/g,'],\n');
 	fs.writeFile('arrayVerses.txt', string, err => { if(err) {console.log(err); } console.log('Ficheiro guardado'); });
 }
-//co(allVerseNumbers2File).catch(error); return;
-
+/*
+let XMLHttpRequest2 = require("xmlhttprequest").XMLHttpRequest;
+let co = require('co');
+co(allVerseNumbers2File).catch(error); return;
+*/
 
 function arrayAllNameVerses() {
 	let result = [];
