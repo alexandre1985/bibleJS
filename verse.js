@@ -1,4 +1,4 @@
-const breakline = '\n';
+const b = '\n';
 
 /* comand-line things */
 let arg = process.argv[2];
@@ -107,13 +107,13 @@ function arg2ChapterName(arg, beautiful) {
 	let chapterName;
 	if(!isNaN(arg)) {
 		if(arg < 1 || arg > 31102) {
-			error('The argument you provided is not correct.\n\nPlease use a number from 1 to 31102 or a bible reference,\nfor example: Exodus 3:5');
+			error('The argument you provided is not correct.'+b+b+'Please use a number from 1 to 31102 or a bible reference,'+b+'for example: Exodus 3:5');
 			return null;
 		}
 		chapterName = totalNameVersesArray[arg - 1];
 	} else {
 		if(!/^(?:(?:[a-z]{1,}|\d{1}\s[a-z]{1,})\s){1,3}\d{1,}:\d{1,}$/ig.test(arg)) {
-			error('The argument you provided is not correct.\n\nPlease use a number from 1 to 31102 or a bible reference,\nfor example: Exodus 3:5');
+			error('The argument you provided is not correct.'+b+b+'Please use a number from 1 to 31102 or a bible reference,'+b+'for example: Exodus 3:5');
 			return null;
 		}
 		//verificar se o livro o chapter e o verse estao correctos
