@@ -110,24 +110,25 @@ function arg2ChapterName(arg, beautiful) {
 		}
 		chapterName = totalNameVersesArray[arg - 1];
 	} else {
-		if(!/^(?:[a-z]{1,}|\d{1}\s[a-z]{1,})\s\d{1,}:\d{1,}$/ig.test(arg)) {
+		if(!/^(?:(?:[a-z]{1,}|\d{1}\s[a-z]{1,})\s){1,3}\d{1,}:\d{1,}$/ig.test(arg)) {
 			error('The argument you provided is not correct.\n\nPlease use a number from 1 to 31102 or a bible reference,\nfor example: Exodus 3:5');
 			return null;
 		}
 		//verificar se o livro o chapter e o verse estao correctos
-		let arrayValues = /^([a-z]{1,}|\d{1}\s[a-z]{1,})\s(\d{1,}):(\d{1,})$/ig.exec(arg);
-		let valueBook = arrayValues[1];
+		let arrayValues = /^((?:(?:[a-z]{1,}|\d{1}\s[a-z]{1,})\s){1,3})(\d{1,}):(\d{1,})$/ig.exec(arg);
+		let valueBook = arrayValues[1].trim();
 		let valueBookLowerCase = valueBook.toLowerCase();
 		let valueChapter = arrayValues[2];
 		let valueVerse = arrayValues[3];
 
-		if(!allBooksNamesLowerCase.includes(valueBookLowerCase)) {
+		let indexOfBook = allBooksNamesLowerCase.indexOf(valueBookLowerCase);
+		if(indexOfBook === -1) {
 			error('"'+ valueBook + '" is not a proper book name of this bible.');
 			return null;
 		}
 
-		valueBook = valueBook[0].toUpperCase() + valueBook.substring(1).toLowerCase();
-		let indexOfBook = allBooksNamesLowerCase.indexOf(valueBookLowerCase);
+
+		valueBook = allBooksNames[indexOfBook];
 		let maxChapterOfArg = allVerseNumbers[indexOfBook].length;
 		if(valueChapter > maxChapterOfArg || valueChapter < 1) {
 			error('The book '+ valueBook + ' does not have the chapter '+valueChapter+'.');
