@@ -1,3 +1,5 @@
+( this repository now lives at [https://gitlab.com/alexandre1985/bibleJS/](https://gitlab.com/alexandre1985/bibleJS/) )
+
 # BibleJS
 ## What does it do?
 This program reads a verse from the KJV bible using an internet connection.
